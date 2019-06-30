@@ -1,0 +1,4 @@
+<launch>
+    <node name="publisher_node" pkg="chapter_1_codes" type="demo_msg_publisher" output="screen"/>
+    <node name="subscriber_node" pkg="chapter_1_codes" type="demo_msg_subscriber" output="screen"/>
+</launch>

@@ -1,0 +1,4 @@
+<launch>
+    <node name="server_node" pkg="chapter_1_codes" type="demo_service_server" output="screen"/>
+    <node name="client_node" pkg="chapter_1_codes" type="demo_service_client" output="screen"/>
+</launch>
