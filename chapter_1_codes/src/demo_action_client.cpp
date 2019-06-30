@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 
     actionlib::SimpleActionClient<chapter_1_codes::demo_actionAction> ac("demo_action", true);
 
-    ROS_INFO("waiting for action server to start");
+    ROS_INFO("waiting for action server to start.");
 
     ac.waitForServer();
 
