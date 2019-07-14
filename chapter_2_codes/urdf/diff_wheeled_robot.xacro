@@ -245,7 +245,7 @@
   </joint>
 
   <gazebo reference="hokuyo_link">
-    <material>Gasebo/Blue</material>
+    <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
     <sensor type="ray" name="head_hokuyo_sensor">
       <pose>${hokuyo_size/2} 0 0 0 0 0</pose>
