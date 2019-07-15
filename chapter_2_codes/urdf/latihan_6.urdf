@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<robot name="agv">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.6 0.4 0.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1.0 1.0 1.0 1"/>
+      </material>
+    </visual>
+    <!-- Latihan_4 Physical Characteristics of Robot, ada <collision> dan <inertial> -->
+    <collision>
+      <geometry>
+        <box size="0.6 0.4 0.2"/>
+      </geometry>
+    </collision>
+    <!-- Latihan_4 Physical Characteristics of Robot, ada <collision> dan <inertial> -->
+
+    <!-- Latihan_5 Tambahan program untuk inersia chassis -->
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.015" ixy="0.0375" ixz="0.0357" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <!-- Latihan_5 Tambahan program untuk inersia chassis -->
+  </link>
+
+  <!-- Membuat Ban Belakang -->
+  <link name="right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0.0 1.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <!-- Latihan_4 Physical Characteristics of Robot, ada <collision> dan <inertial> -->
+    <collision>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+    <!-- Latihan_4 Physical Characteristics of Robot, ada <collision> dan <inertial> -->
+    <!-- Latihan_5 Tambahan program inersia -->
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+               iyy="0.0001" iyz="0.0"
+               izz="0.0001"/>
+    </inertial>
+    <!-- Latihan_5 Tambahan program inersia -->
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <axis xyz="0.0 0.0 1"/>
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="-0.30 -0.20 -0.10" rpy="-1.570796327 0.0 0.0"/>
+  </joint>
+
+  <link name="left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <!-- Latihan_4 Physical Characteristics of Robot, ada <collision> dan <inertial> -->
+    <collision>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+    <!-- Latihan_4 Physical Characteristics of Robot, ada <collision> dan <inertial> -->
+    <!-- Latihan_5 Tambahan program inersia -->
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+               iyy="0.0001" iyz="0.0"
+               izz="0.0001"/>
+    </inertial>
+    <!-- Latihan_5 Tambahan program inersia -->
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <axis xyz="0.0 0.0 1"/>
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="-0.30 0.20 -0.10" rpy="-1.570796327 0.0 0.0"/>
+  </joint>
+  <!-- Membuat Ban Belakang -->
+
+
+
+<!-- Caster Back -->
+  <link name="caster_back_link">
+    
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="1.570796327 0 0"/>   <!-- Posisi si caster-->
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="Red"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="1.570796327 0 0"/>
+    </collision>
+
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+               iyy="0.0001" iyz="0.0"
+               izz="0.0001"/>
+    </inertial>
+
+  </link>
+
+
+  <joint name="caster_back_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_back_link"/>
+    <origin xyz="0.3 0.0 -0.1" rpy="-1.570796327 0 0"/>    <!-- Posisi si caster terhadap joint base-->
+  </joint>
+
+  <gazebo reference="caster_back_link">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+<!-- Caster Back -->
+
+  <!-- Tambah controller, supaya bisa bergerak di gazebo dengan menggunakan cmd_vel/odom -->
+  <!-- <gazebo>
+    <plugin name="differential_drive_controller"
+            filename="libgazebo_ros_diff_drive.so">
+      <leftJoint>right_wheel_joint</leftJoint>
+      <rightJoint>left_wheel_joint</rightJoint>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <wheelSeparation>0.25</wheelSeparation>
+      <wheelDiameter>0.07</wheelDiameter>
+      <publishWheelJointState>true</publishWheelJointState>
+    </plugin>
+  </gazebo> -->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>false</publishWheelTF>
+      <robotNamespace>/</robotNamespace>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>false</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100.0</updateRate>
+      <leftJoint>left_wheel_joint</leftJoint>
+      <rightJoint>right_wheel_joint</rightJoint>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <wheelSeparation>0.8</wheelSeparation>
+      <wheelDiameter>0.2</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>30</wheelTorque>
+      <wheelAcceleration>1.8</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryTopic>odom</odometryTopic>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+  <!-- Tambah controller, supaya bisa bergerak di gazebo dengan menggunakan cmd_vel/odom -->
+
+</robot>

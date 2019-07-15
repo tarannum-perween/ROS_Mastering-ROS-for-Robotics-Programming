@@ -1,0 +1,24 @@
+<launch>
+	<arg name="model" />
+	<!-- Parsing xacro and setting robot_description parameter -->
+    <param name="robot_description" textfile="$(find chapter_2_codes)/urdf/example_16_10.urdf"/>
+
+	<!-- Setting gui parameter to true for display joint slider -->
+	<param name="use_gui" value="true"/>
+
+	<!-- Starting Joint state publisher node which will publish the joint values -->
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+	<!-- Starting robot state publish which will publish tf -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+	<!-- Start Gazebo with an empty world -->
+  	<include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+  	<!-- Spawn a TortoiseBot in Gazebo, taking the description from the parameter
+       	server -->
+  	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"	args="-param robot_description -urdf -model tortoisebot"/>
+
+	<!-- Launch visualization in rviz -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find chapter_2_codes)/urdf.rviz" required="true" />
+
+</launch>

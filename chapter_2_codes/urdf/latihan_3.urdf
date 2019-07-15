@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<robot name="agv">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.6 0.4 0.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1.0 1.0 1.0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Membuat Ban Belakang -->
+  <link name="right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0.0 1.0 0.0 1.0"/>
+      </material>
+    </visual>    
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <axis xyz="0.0 0.0 1"/>
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="-0.30 -0.20 -0.10" rpy="-1.570796327 0.0 0.0"/>
+  </joint>
+
+  <link name="left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </visual>    
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <axis xyz="0.0 0.0 1"/>
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="-0.30 0.20 -0.10" rpy="-1.570796327 0.0 0.0"/>
+  </joint>
+  <!-- Membuat Ban Belakang -->
+
+
+
+<!-- Caster Right Front -->
+  <link name="caster_right_front_link">
+    <visual>
+      <!-- <origin xyz="0 0.15 -0.2" rpy="0 0 0"/> -->
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="1.0 1.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="caster_right_front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_right_front_link"/>
+    <origin xyz="0.30 -0.20 -0.15" rpy="0 0 0"/>
+  </joint>
+<!-- Caster Right Front -->
+
+<!-- Caster Left Front -->
+  <link name="caster_left_front_link">
+    <visual>
+      <!-- <origin xyz="0 0.15 -0.2" rpy="0 0 0"/> -->
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="purple">
+        <color rgba="1.0 0.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+
+  <joint name="caster_left_front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_left_front_link"/>
+    <origin xyz="0.30 0.20 -0.15" rpy="0 0 0"/>
+  </joint>
+<!-- Caster Left Front -->
+
+</robot>

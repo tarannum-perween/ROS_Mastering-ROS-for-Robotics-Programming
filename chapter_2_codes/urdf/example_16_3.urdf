@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot name="tortoisebot">
+  
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.6 0.3 0.3"/>
+      </geometry>
+      <material name="silver">
+        <color rgba="0.75 0.75 0.75 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Membuat dudukan caster depan -->
+  <link name="front_caster">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+
+  <joint name="front_caster_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_caster"/>
+    <origin xyz="0.3 0.0 -0.1" rpy="0.0 0.0 0.0"/>
+  </joint>
+  <!-- Membuat dudukan caster depan -->
+
+  <!-- Membuat ban caster -->
+  <link name="front_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.05"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="front_wheel_joint" type="continuous">
+    <axis xyz="0.0 0.0 1"/>
+    <parent link="front_caster"/>
+    <child link="front_wheel"/>
+    <origin xyz="0.05 0.0 -0.05" rpy="-1.5708 0.0 0.0"/>
+  </joint>
+  <!-- Membuat ban caster -->
+
+
+
+</robot>

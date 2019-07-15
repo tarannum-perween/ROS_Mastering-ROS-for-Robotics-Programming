@@ -26,6 +26,9 @@
     <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" output="screen" >
         <param name="publish_frequency" type="double" value="50.0" />
     </node>
+    <!-- <node pkg="robot_state_publisher" type="state_publisher" name="state_publisher" output="screen" >
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node> -->
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find chapter_2_codes)/urdf.rviz" required="true" />
     

@@ -42,7 +42,7 @@
   <!-- caster wheel radius and height -->
   <!-- caster wheel mass -->
   <property name="caster_f_height" value="0.04" /> 
-  <property name="caster_f_radius" value="0.025" /> 
+  <property name="caster_f_radius" value="0.03" /> 
   <property name="caster_f_mass" value="0.5" /> <!-- in kg-->
 
 
@@ -50,7 +50,7 @@
   <!-- caster wheel radius and height -->
   <!-- caster wheel mass -->
   <property name="caster_b_height" value="0.04" /> 
-  <property name="caster_b_radius" value="0.025" /> 
+  <property name="caster_b_radius" value="0.02" /> 
   <property name="caster_b_mass" value="0.5" /> <!-- in kg-->
 
 
@@ -296,7 +296,6 @@
       <odometryFrame>odom</odometryFrame>
       <odometryTopic>odom</odometryTopic>
       <robotBaseFrame>base_footprint</robotBaseFrame>
-
     </plugin>
   </gazebo>
 
